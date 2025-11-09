@@ -8,6 +8,7 @@ var total_turns = 0 #keeps track of the total number of turns taken
 signal x_played(pos: Vector2i)
 signal o_played(pos: Vector2i)
 signal game_over(result: String)
+signal board_reset
 # this class can prollyv check weather the clicked coordinate is empty or not
 # so we need a function for that 
 # I need to store all the values occupied
@@ -146,3 +147,10 @@ func draw_check() -> bool:
 		return true
 	else:
 		return false
+		
+func reset() -> void:
+	X_array.clear()
+	O_array.clear()
+	turn_decider = -1
+	total_turns = 0
+	board_reset.emit()

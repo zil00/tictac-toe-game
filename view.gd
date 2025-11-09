@@ -12,3 +12,6 @@ func _set_x(coord: Vector2i) -> void:
 
 func _set_o(coord: Vector2i) -> void:
 	set_cell(coord, o_source_id, o_atlas)
+
+func clear_board() -> void:
+	clear

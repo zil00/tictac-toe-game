@@ -11,6 +11,7 @@ func _ready() -> void:
 	model.x_played.connect(view._set_x)
 	model.o_played.connect(view._set_o)
 	model.game_over.connect(_on_game_over)
+	model.board_reset.connect(_on_board_reset)
 	
 func _on_game_over(result: String) ->void:
 	if result=="X Won":
@@ -20,6 +21,8 @@ func _on_game_over(result: String) ->void:
 	elif result=="Cat Won":
 		game_over.text="Cat Won"
 	game_over.visible = true
+	await get_tree().create_timer(1.0).timeout
+	reset_game()
 	
 	
 	
@@ -34,3 +37,11 @@ func _input(event):
 			
 			if used_rect.has_point(click_map_pos):
 				model.check_empty(click_map_pos)
+
+func reset_game() -> void:
+	game_over.visible = false
+	view.clear_board()
+	model.reset()
+	
+func _on_board_reset() ->void:
+	pass
