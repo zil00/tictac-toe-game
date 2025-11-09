@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=4 uid="uid://wk6m8o0q5imi"]
+
+[ext_resource type="Texture2D" uid="uid://jt8hu8dw8h5q" path="res://tic-tac-toe_spritesheet.png" id="1_1i3gi"]
+[ext_resource type="Script" uid="uid://cgvacj5h7hdoc" path="res://controller.gd" id="2_dqtar"]
+[ext_resource type="Script" uid="uid://cyvtyfex762vg" path="res://model.gd" id="3_w2evn"]
+[ext_resource type="Script" uid="uid://dasxs6smutcky" path="res://view.gd" id="4_ape6d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qqdj"]
+texture = ExtResource("1_1i3gi")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dqtar"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_3qqdj")
+
+[node name="tilemap" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAAAAAEAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAACAAIAAAACAAAAAAACAAEAAAACAAAAAAACAAAAAAACAAAAAAAAAAIAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_dqtar")
+
+[node name="controller" type="Node2D" parent="."]
+script = ExtResource("2_dqtar")
+
+[node name="model" type="Node2D" parent="."]
+script = ExtResource("3_w2evn")
+
+[node name="view" type="Node2D" parent="."]
+script = ExtResource("4_ape6d")
