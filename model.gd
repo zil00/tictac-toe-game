@@ -19,10 +19,10 @@ func check_empty(coord: Vector2i):
 			total_turns+=1
 			o_played.emit(coord)
 			O_array.append(coord)
-			win_check_o()
+			
 			if win_check_o() == true:
 				return
-			draw_check()
+			
 			if draw_check() == true:
 				return
 			print("'X's' turn")
@@ -30,10 +30,10 @@ func check_empty(coord: Vector2i):
 			total_turns+=1
 			x_played.emit(coord)
 			X_array.append(coord)
-			win_check_x()
+			
 			if win_check_x() == true:
 				return
-			draw_check()
+			
 			if draw_check() == true:
 				return
 			print("'O's' turn")
