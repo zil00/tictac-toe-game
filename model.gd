@@ -16,14 +16,13 @@ signal board_reset
 # I need to store all the values occupied
 #maybe I can make two arrays for X and Y
 func check_empty(coord: Vector2i):
-	if coord not in X_array or O_array :
+	if (coord not in X_array) and (coord not in O_array):
 		#if the space has not been occupied then we change the decider
 		turn_decider+=1
 		if turn_decider%2 == 0: #for when o played
 			total_turns+=1
 			o_played.emit(coord)
 			O_array.append(coord)
-			
 			if win_check_o() == true:
 				game_over.emit("O Won")
 				return
