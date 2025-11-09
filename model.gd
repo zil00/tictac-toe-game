@@ -7,6 +7,7 @@ var turn_decider = -1 #if 0 then O if 1 then X
 var total_turns = 0 #keeps track of the total number of turns taken 
 signal x_played(pos: Vector2i)
 signal o_played(pos: Vector2i)
+signal game_over(result: String)
 # this class can prollyv check weather the clicked coordinate is empty or not
 # so we need a function for that 
 # I need to store all the values occupied
@@ -21,9 +22,11 @@ func check_empty(coord: Vector2i):
 			O_array.append(coord)
 			
 			if win_check_o() == true:
+				game_over.emit("O Won")
 				return
 			
 			if draw_check() == true:
+				game_over.emit("Cat Won")
 				return
 			print("'X's' turn")
 		else:
@@ -32,9 +35,11 @@ func check_empty(coord: Vector2i):
 			X_array.append(coord)
 			
 			if win_check_x() == true:
+				game_over.emit("X Won")
 				return
 			
 			if draw_check() == true:
+				game_over.emit("Cat Won")
 				return
 			print("'O's' turn")
 		#print(X_array)

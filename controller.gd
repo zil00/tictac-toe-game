@@ -3,12 +3,24 @@ class_name Controller
 var model:= Model.new()
 @export var board: TileMapLayer
 @onready var view: View = $TileMapLayer
+@onready var game_over: Label = $gameover
 func _ready() -> void:
 	if board == null:
 		print("null")
 	assert(view != null)
 	model.x_played.connect(view._set_x)
 	model.o_played.connect(view._set_o)
+	model.game_over.connect(_on_game_over)
+	
+func _on_game_over(result: String) ->void:
+	if result=="X Won":
+		game_over.text = "X Won"
+	elif result=="O Won":
+		game_over.text = "O Won"
+	elif result=="Cat Won":
+		game_over.text="Cat Won"
+	game_over.visible = true
+	
 	
 	
 func _input(event):
