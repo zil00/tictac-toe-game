@@ -4,6 +4,7 @@ var model:= Model.new()
 @export var board: TileMapLayer
 @onready var view: View = $TileMapLayer
 @onready var game_over: Label = $gameover
+@onready var re_start: Button = $restart
 func _ready() -> void:
 	if board == null:
 		print("null")
@@ -18,14 +19,21 @@ func _ready() -> void:
 func _on_game_over(result: String) ->void:
 	if result=="X Won":
 		game_over.text = "X Won"
+		game_over.visible = true
+		await get_tree().create_timer(1.0).timeout
+		re_start.visible = true
+		
 	elif result=="O Won":
 		game_over.text = "O Won"
+		game_over.visible = true
+		await get_tree().create_timer(1.0).timeout
+		re_start.visible = true
 	elif result=="Cat Won":
 		game_over.text="Cat Won"
-	game_over.visible = true
-	await get_tree().create_timer(1.0).timeout
-	_on_board_reset(model.O_array,model.X_array)
-	reset_game()
+		game_over.visible = true
+		await get_tree().create_timer(1.0).timeout
+		re_start.visible = true
+	
 	
 	
 	
@@ -48,3 +56,9 @@ func reset_game() -> void:
 	
 func _on_board_reset(x: Array, o:Array) ->void:
 	view.clear_board(x, o)
+
+
+func _on_restart_pressed() -> void:
+	_on_board_reset(model.O_array,model.X_array)
+	reset_game()
+	re_start.visible =false
