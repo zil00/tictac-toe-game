@@ -24,8 +24,9 @@ func _on_game_over(result: String) ->void:
 		game_over.text="Cat Won"
 	game_over.visible = true
 	await get_tree().create_timer(1.0).timeout
-	reset_game()
 	_on_board_reset(model.O_array,model.X_array)
+	reset_game()
+	
 	
 	
 	

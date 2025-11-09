@@ -151,8 +151,8 @@ func draw_check() -> bool:
 		return false
 		
 func reset() -> void:
-	send_O_array.emit(X_array)
-	send_X_array.emit(O_array)
+	send_O_array.emit(O_array)
+	send_X_array.emit(X_array)
 	X_array.clear()
 	O_array.clear()
 	turn_decider = -1
