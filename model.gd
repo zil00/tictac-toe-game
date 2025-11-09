@@ -16,18 +16,25 @@ func check_empty(coord: Vector2i):
 		if turn_decider%2 == 0:
 			O_array.append(coord)
 			win_check_o()
+			if win_check_o() == true:
+				return
 			draw_check()
+			if draw_check() == true:
+				return
 			print("'X's' turn")
 		else:
 			X_array.append(coord)
 			win_check_x()
+			if win_check_x() == true:
+				return
 			draw_check()
+			if draw_check() == true:
+				return
 			print("'O's' turn")
 		#print(X_array)
 	else:
 		print("space occupied !! Try Again !!")
-func win_check_x():
-	total_turns+=1
+func win_check_x() -> bool:
 	#check for same 3 x coordinates 
 	var check_three_x=0
 	for count in X_array:
@@ -36,7 +43,7 @@ func win_check_x():
 				check_three_x+=1
 				if check_three_x ==3:
 					print("X won")
-					return
+					return true
 		check_three_x = 0
 	#check for same 3 y coordinates
 	var check_three_y=0
@@ -46,7 +53,7 @@ func win_check_x():
 				check_three_y+=1
 				if check_three_y ==3:
 					print("X won")
-					return
+					return true
 		check_three_y = 0
 	#check for 3 x coordinates 0,1,2
 	var check_diagonal = 0
@@ -59,7 +66,7 @@ func win_check_x():
 			check_diagonal+=1
 		if check_diagonal == 3:
 			print("O won here")
-			return
+			return true
 	check_diagonal=0
 	for count in X_array:
 		if count.x == 2 and count.y==0:
@@ -70,10 +77,11 @@ func win_check_x():
 			check_diagonal+=1
 		if check_diagonal == 3:
 			print("O won here")
-			return
+			return true
 	check_diagonal = 0
+	return false
 	
-func win_check_o():
+func win_check_o() -> bool:
 	total_turns+=1
 	#check for same 3 x coordinates 
 	var check_three_x=0
@@ -83,7 +91,7 @@ func win_check_o():
 				check_three_x+=1
 				if check_three_x ==3:
 					print("O won")
-					return
+					return true
 		check_three_x = 0
 	#check for same 3 y coordinates
 	var check_three_y=0
@@ -93,7 +101,7 @@ func win_check_o():
 				check_three_y+=1
 				if check_three_y ==3:
 					print("O won")
-					return
+					return true
 		check_three_y = 0
 	#check for 3 x coordinates 0,1,2
 	var check_diagonal = 0
@@ -106,7 +114,7 @@ func win_check_o():
 			check_diagonal+=1
 		if check_diagonal == 3:
 			print("O won here")
-			return
+			return true
 	check_diagonal =0
 	for count in O_array:
 		if count.x == 2 and count.y==0:
@@ -117,9 +125,14 @@ func win_check_o():
 			check_diagonal+=1
 		if check_diagonal == 3:
 			print("O won here")
-			return
+			return true
 	check_diagonal = 0
+	return false
 
-func draw_check():
+func draw_check() -> bool:
 	if total_turns > 8 :
 		print("the cat won the game")
+		print(total_turns)
+		return true
+	else:
+		return false
