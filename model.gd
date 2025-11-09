@@ -14,6 +14,7 @@ func check_empty(coord: Vector2i):
 		#if the space has not been occupied then we change the decider
 		turn_decider+=1
 		if turn_decider%2 == 0:
+			total_turns+=1
 			O_array.append(coord)
 			win_check_o()
 			if win_check_o() == true:
@@ -23,6 +24,7 @@ func check_empty(coord: Vector2i):
 				return
 			print("'X's' turn")
 		else:
+			total_turns+=1
 			X_array.append(coord)
 			win_check_x()
 			if win_check_x() == true:
@@ -82,7 +84,6 @@ func win_check_x() -> bool:
 	return false
 	
 func win_check_o() -> bool:
-	total_turns+=1
 	#check for same 3 x coordinates 
 	var check_three_x=0
 	for count in O_array:
