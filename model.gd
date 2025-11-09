@@ -18,13 +18,11 @@ func check_empty(coord: Vector2i):
 			win_check_o()
 			draw_check()
 			print("'X's' turn")
-			print(O_array)
 		else:
 			X_array.append(coord)
 			win_check_x()
 			draw_check()
 			print("'O's' turn")
-			print(X_array)
 		#print(X_array)
 	else:
 		print("space occupied !! Try Again !!")
@@ -37,8 +35,8 @@ func win_check_x():
 			if count.x == index.x:
 				check_three_x+=1
 				if check_three_x ==3:
-					print("win")
-					break
+					print("X won")
+					return
 		check_three_x = 0
 	#check for same 3 y coordinates
 	var check_three_y=0
@@ -47,20 +45,33 @@ func win_check_x():
 			if count.y == index.y:
 				check_three_y+=1
 				if check_three_y ==3:
-					print("win")
-					break
+					print("X won")
+					return
 		check_three_y = 0
 	#check for 3 x coordinates 0,1,2
 	var check_diagonal = 0
 	for count in X_array:
-		if count.x == 0:
+		if count.x == 0 and count.y==0:
 			check_diagonal+=1
-		elif count.x == 1:
+		elif count.x == 1 and count.y==1:
 			check_diagonal+=1
-		elif count.x == 2:
+		elif count.x == 2 and count.y==2:
 			check_diagonal+=1
-		if check_diagonal ==3:
-			print("win")
+		if check_diagonal == 3:
+			print("O won here")
+			return
+	check_diagonal=0
+	for count in X_array:
+		if count.x == 2 and count.y==0:
+			check_diagonal+=1
+		elif count.x == 1 and count.y==1:
+			check_diagonal+=1
+		elif count.x == 0 and count.y==2:
+			check_diagonal+=1
+		if check_diagonal == 3:
+			print("O won here")
+			return
+	check_diagonal = 0
 	
 func win_check_o():
 	total_turns+=1
@@ -71,8 +82,8 @@ func win_check_o():
 			if count.x == index.x:
 				check_three_x+=1
 				if check_three_x ==3:
-					print("win")
-					break
+					print("O won")
+					return
 		check_three_x = 0
 	#check for same 3 y coordinates
 	var check_three_y=0
@@ -81,20 +92,33 @@ func win_check_o():
 			if count.y == index.y:
 				check_three_y+=1
 				if check_three_y ==3:
-					print("win")
-					break
+					print("O won")
+					return
 		check_three_y = 0
 	#check for 3 x coordinates 0,1,2
 	var check_diagonal = 0
 	for count in O_array:
-		if count.x == 0:
+		if count.x == 0 and count.y==0:
 			check_diagonal+=1
-		elif count.x == 1:
+		elif count.x == 1 and count.y==1:
 			check_diagonal+=1
-		elif count.x == 2:
+		elif count.x == 2 and count.y==2:
 			check_diagonal+=1
-		if check_diagonal ==3:
-			print("win")
+		if check_diagonal == 3:
+			print("O won here")
+			return
+	check_diagonal =0
+	for count in O_array:
+		if count.x == 2 and count.y==0:
+			check_diagonal+=1
+		elif count.x == 1 and count.y==1:
+			check_diagonal+=1
+		elif count.x == 0 and count.y==2:
+			check_diagonal+=1
+		if check_diagonal == 3:
+			print("O won here")
+			return
+	check_diagonal = 0
 
 func draw_check():
 	if total_turns > 8 :
