@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://dly2v63c0kgw4"]
+[gd_scene load_steps=6 format=4 uid="uid://dly2v63c0kgw4"]
 
 [ext_resource type="Texture2D" uid="uid://jt8hu8dw8h5q" path="res://tic-tac-toe_spritesheet.png" id="1_1i3gi"]
 [ext_resource type="Script" uid="uid://7itkma7w1p1i" path="res://controller.gd" id="1_nsmjb"]
+[ext_resource type="Script" uid="uid://b45diuk44bli6" path="res://view.gd" id="4_ape6d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qqdj"]
 texture = ExtResource("1_1i3gi")
@@ -21,3 +22,4 @@ board = NodePath("TileMapLayer")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAAAAAEAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAACAAIAAAACAAAAAAACAAEAAAACAAAAAAACAAAAAAACAAAAAAAAAAIAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_dqtar")
+script = ExtResource("4_ape6d")

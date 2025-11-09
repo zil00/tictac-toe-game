@@ -1,10 +1,16 @@
-extends Model
+extends nodeclass
 class_name Controller
+var model:= Model.new()
 @export var board: TileMapLayer
+@onready var view: View = $TileMapLayer
 func _ready() -> void:
 	if board == null:
 		print("null")
-		
+	assert(view != null)
+	model.x_played.connect(view._set_x)
+	model.o_played.connect(view._set_o)
+	
+	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -15,4 +21,4 @@ func _input(event):
 			var used_rect = board.get_used_rect()
 			
 			if used_rect.has_point(click_map_pos):
-				check_empty(click_map_pos)
+				model.check_empty(click_map_pos)
