@@ -1,15 +1,6 @@
 extends Node2D
+class_name Controller
 
-var board_size:int
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	#var used_rect = $TileMapLayer.get_used_rect().size.x
-	pass
-#
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -20,4 +11,5 @@ func _input(event):
 			var used_rect = $TileMapLayer.get_used_rect()
 			
 			if used_rect.has_point(click_map_pos):
-				print("Click was INSIDE the used tilemap area!")
+				var grid_coord: Vector2i = click_map_pos
+				print(grid_coord)
