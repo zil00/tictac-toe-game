@@ -12,6 +12,8 @@ func _ready() -> void:
 	model.o_played.connect(view._set_o)
 	model.game_over.connect(_on_game_over)
 	model.board_reset.connect(_on_board_reset)
+	model.send_X_array.connect(_on_board_reset)
+	model.send_O_array.connect(_on_board_reset)
 	
 func _on_game_over(result: String) ->void:
 	if result=="X Won":
@@ -23,6 +25,7 @@ func _on_game_over(result: String) ->void:
 	game_over.visible = true
 	await get_tree().create_timer(1.0).timeout
 	reset_game()
+	_on_board_reset(model.O_array,model.X_array)
 	
 	
 	
@@ -40,8 +43,7 @@ func _input(event):
 
 func reset_game() -> void:
 	game_over.visible = false
-	view.clear_board()
 	model.reset()
 	
-func _on_board_reset() ->void:
-	pass
+func _on_board_reset(x: Array, o:Array) ->void:
+	view.clear_board(x, o)
