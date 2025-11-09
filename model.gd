@@ -4,7 +4,7 @@ var tile_map_layer_from_model: Node2D
 var X_array = []
 var O_array = []
 var turn_decider = -1 #if 0 then O if 1 then X
-
+var total_turns = 0 #keeps track of the total number of turns taken 
 # this class can prollyv check weather the clicked coordinate is empty or not
 # so we need a function for that 
 # I need to store all the values occupied
@@ -15,17 +15,21 @@ func check_empty(coord: Vector2i):
 		turn_decider+=1
 		if turn_decider%2 == 0:
 			O_array.append(coord)
+			win_check_o()
+			draw_check()
 			print("'X's' turn")
 			print(O_array)
 		else:
 			X_array.append(coord)
 			win_check_x()
+			draw_check()
 			print("'O's' turn")
 			print(X_array)
 		#print(X_array)
 	else:
 		print("space occupied !! Try Again !!")
 func win_check_x():
+	total_turns+=1
 	#check for same 3 x coordinates 
 	var check_three_x=0
 	for count in X_array:
@@ -59,6 +63,7 @@ func win_check_x():
 			print("win")
 	
 func win_check_o():
+	total_turns+=1
 	#check for same 3 x coordinates 
 	var check_three_x=0
 	for count in O_array:
@@ -92,4 +97,5 @@ func win_check_o():
 			print("win")
 
 func draw_check():
-	print("draww")
+	if total_turns > 8 :
+		print("the cat won the game")
